@@ -1,0 +1,103 @@
+.order-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 16px;
+  }
+  
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .order-table th,
+  .order-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .order-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .accept {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .reject {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .btn:disabled {
+    background-color: #808080 !important;
+    cursor: not-allowed;
+  }
+  
+  .details {
+    background-color: #008CBA;
+    color: white;
+  }
+  
+  .accept:hover {
+    background-color: #45a049;
+  }
+  
+  .reject:hover {
+    background-color: #d32f2f;
+  }
+  
+  .details:hover {
+    background-color: #007bb5;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .close {
+    background-color: #808080;
+  }
+  
+  @media (max-width: 600px) {
+    .order-table th,
+    .order-table td {
+      font-size: 12px;
+      padding: 8px;
+    }
+  
+    .btn {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+  

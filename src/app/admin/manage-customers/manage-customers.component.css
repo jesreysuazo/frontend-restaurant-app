@@ -1,0 +1,95 @@
+.admin-manage-customer-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 10px;
+  }
+  
+  .admin-manage-customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .admin-manage-customer-table th,
+  .admin-manage-customer-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-manage-customer-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .admin-manage-customer-btn {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .admin-manage-customer-btn.admin {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .admin-manage-customer-btn.delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .admin-manage-customer-btn.view {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  /* Modal */
+  .admin-manage-customer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex; /* Ensure it shows */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Bring it to the front */
+  }
+  
+  .admin-manage-customer-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+  }
+  .admin-manage-customer-btn.close {
+    background-color: #6c757d;
+    color: white;
+  }
+  .admin-manage-customer-btn:disabled {
+    background-color: #808080 !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .admin-manage-customer-table th,
+    .admin-manage-customer-table td {
+      font-size: 12px;
+      padding: 5px;
+    }
+  
+    .admin-manage-customer-btn {
+      font-size: 12px;
+      padding: 3px 7px;
+    }
+  }
+  

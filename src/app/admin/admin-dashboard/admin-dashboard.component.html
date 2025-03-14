@@ -1,0 +1,18 @@
+<h2 class="admin-header">Admin Dashboard</h2>
+
+<div class="tabs">
+  <button 
+    *ngFor="let tab of tabs; let i = index"
+    [class.active]="selectedTab === i"
+    (click)="selectedTab = i"
+    style="color: black;"
+  >
+    {{ tab.label }}
+  </button>
+</div>
+
+<div class="tab-content">
+  <app-manage-menu *ngIf="selectedTab === 0"></app-manage-menu>
+  <app-manage-customers *ngIf="selectedTab === 1"></app-manage-customers>
+  <app-manage-orders *ngIf="selectedTab === 2"></app-manage-orders>
+</div>

@@ -1,0 +1,26 @@
+
+<section class="menu-section">
+    <div class="section-container menu-content">
+        <h2 class="menu-header">Menu</h2>
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" [(ngModel)]="selectedCategory">
+            <option value="">All Categories</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+        <div id="menu">
+            <div class="menu">
+                <div class="menu-item" *ngFor="let item of filteredItems">
+                    <p class="menu-item-price">₱{{ item.price }}</p>
+                    <img [src]="item.imageUrl" [alt]="item.name" />
+                    <div class="menu-item-content">
+                        <div class="menu-item-details">
+                            <h3 class="menu-card-header">{{ item.name }}</h3>
+                            <p class="menu-card-desc">{{ item.description }}</p>
+                        </div>
+                        <button class="menu-card-btn" (click)="addToCart(item.id)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

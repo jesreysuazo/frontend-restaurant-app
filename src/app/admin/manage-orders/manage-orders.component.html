@@ -1,0 +1,43 @@
+<div class="order-container">
+    <table class="order-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date Created</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{ order.name }}</td>
+                <td>{{ formatDate(order.dateCreated) }}</td>
+                <td>₱{{ order.totalPrice.toFixed(2) }}</td>
+                <td>{{order.status}}</td>
+                <td>
+                    <button class="btn accept" (click)="acceptOrder(order)" [disabled]="order.status !== 'PENDING'">
+                        Accept
+                    </button>
+                    <button class="btn reject" (click)="rejectOrder(order)" [disabled]="order.status !== 'PENDING'">
+                        Reject
+                    </button>
+                    <button class="btn details" (click)="viewDetails(order)">See Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div *ngIf="selectedOrder" class="modal">
+        <div class="modal-content">
+            <h2>Order Details</h2>
+            <p><strong>Name:</strong> {{ selectedOrder.name }}</p>
+            <p><strong>Contact:</strong> {{ selectedOrder.contactNumber }}</p>
+            <p><strong>Address:</strong> {{ selectedOrder.address }}</p>
+            <p><strong>Total Price:</strong> ₱{{ selectedOrder.totalPrice.toFixed(2) }}</p>
+            <p><strong>Ordered Items:</strong> {{ selectedOrder.productNames }}</p>
+            <button class="btn close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</div>

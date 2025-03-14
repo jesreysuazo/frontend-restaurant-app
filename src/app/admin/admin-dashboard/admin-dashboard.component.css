@@ -1,0 +1,29 @@
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #f8f8f8;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button.active {
+    background: #007bff;
+    color: white !important;
+    font-weight: bold;
+  }
+  
+  .tab-content {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  
+  .admin-header{
+    margin-top: 8rem;
+  }

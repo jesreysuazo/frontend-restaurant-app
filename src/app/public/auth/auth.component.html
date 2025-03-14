@@ -1,0 +1,96 @@
+<div class="auth-backdrop">
+  <div class="auth-container" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeModal()">
+      <img class="close-btn" src="/assets/close.png" />
+    </button>
+    
+    <h2 class="modal-header">
+      {{ isForgotPasswordMode ? 'Forgot Password' : (isLoginMode ? 'Login' : 'Register') }}
+    </h2>
+
+    <!-- Forgot Password View -->
+    <div *ngIf="isForgotPasswordMode">
+      <form (ngSubmit)="submitForgotPassword()">
+        <span class="auth-form-container">
+          <label for="forgot-email">Email</label>
+          <input 
+            type="email" 
+            id="forgot-email" 
+            [(ngModel)]="forgotPasswordEmail" 
+            name="forgotEmail" 
+            required 
+            (blur)="validateForgotPasswordEmail()"
+          />
+          <p *ngIf="!isForgotEmailValid" class="error">Invalid email format</p>
+        </span>
+        <p *ngIf="successMsg" class="auth-modal-msg">{{ successMsg }}</p>
+        <button class="auth-submit-btn" type="submit" [disabled]="!isForgotEmailValid || !forgotPasswordEmail.trim()">
+          <span *ngIf="!isLoading">Submit</span>
+          <span *ngIf="isLoading"><img class="auth-loader" src="/assets/loader.png" /></span>
+        </button>
+      </form>
+      
+      <button class="toggle-btn" (click)="toggleForgotPassword()">
+        Back to Login
+      </button>
+    </div>
+
+    <!-- Login / Register View -->
+    <div *ngIf="!isForgotPasswordMode">
+      <form (ngSubmit)="submit()">
+        <div *ngIf="!isLoginMode">
+          <span class="auth-form-container">
+            <label for="name">Name</label>
+            <input type="text" id="name" [(ngModel)]="user.name" name="name" required />
+          </span>
+        </div>
+
+        <span class="auth-form-container">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            [(ngModel)]="email" 
+            name="email" 
+            required 
+            (blur)="validateEmail()"
+          />
+          <p *ngIf="!isEmailValid" class="error">Invalid email format</p>
+        </span>
+
+        <span class="auth-form-container">
+          <label for="password">Password</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" required />
+        </span>
+
+        <div *ngIf="!isLoginMode">
+          <span class="auth-form-container">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" required />
+          </span>
+          <span class="auth-form-container">
+            <label for="address">Address</label>
+            <input type="text" id="address" [(ngModel)]="user.address" name="address" required />
+          </span>
+        </div>
+
+        <p *ngIf="errorMessage" class="auth-modal-msg error">{{ errorMessage }}</p>
+        <p *ngIf="successMsg" class="auth-modal-msg">{{ successMsg }}</p>
+
+        <button class="auth-submit-btn" type="submit" [disabled]="!isFormValid()">
+          <span *ngIf="!isLoading">{{ isLoginMode ? 'Login' : 'Register' }}</span>
+          <span *ngIf="isLoading"><img class="auth-loader" src="/assets/loader.png" /></span>
+        </button>
+      </form>
+
+      <button class="toggle-btn" (click)="toggleMode()">
+        {{ isLoginMode ? 'Need an account? Register' : 'Already have an account? Login' }}
+      </button>
+
+      <!-- Forgot Password Link -->
+      <button *ngIf="isLoginMode" class="toggle-btn" (click)="toggleForgotPassword()">
+        Forgot Password?
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="admin-manage-customer-container">
+  <table class="admin-manage-customer-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.status === 1 ? 'Active' : 'Unverified' }}</td>
+        <td>
+          <button 
+            class="admin-manage-customer-btn admin" 
+            (click)="makeAdmin(user)" 
+            [disabled]="user.role === 'ADMIN'">
+            Make Admin
+          </button>
+
+          <button 
+            class="admin-manage-customer-btn delete" 
+            (click)="deleteUser(user)" 
+            [disabled]="user.status !== 1">
+            Delete
+          </button>
+
+          <button 
+            class="admin-manage-customer-btn view" 
+            (click)="viewInfo(user)">
+            View Info
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div *ngIf="selectedUser" class="admin-manage-customer-modal">
+    <div class="admin-manage-customer-modal-content">
+      <h2>User Information</h2>
+      <p><strong>ID:</strong> {{ selectedUser.id }}</p>
+      <p><strong>Name:</strong> {{ selectedUser.name }}</p>
+      <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedUser.phoneNumber }}</p>
+      <p><strong>Address:</strong> {{ selectedUser.address }}</p>
+      <p><strong>Role:</strong> {{ selectedUser.role }}</p>
+      <p><strong>Status:</strong> {{ selectedUser.status === 1 ? 'Active' : 'Unverified' }}</p>
+      <p><strong>Added Date:</strong> {{ selectedUser.addedDate }}</p>
+      <button class="admin-manage-customer-btn close" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

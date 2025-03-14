@@ -1,0 +1,5 @@
+<app-header (openAuthModal)="handleAuthToggle($event)" />
+<router-outlet />
+
+
+<app-auth *ngIf="isOpen" (closeAuthModal)="handleAuthToggle($event)" />

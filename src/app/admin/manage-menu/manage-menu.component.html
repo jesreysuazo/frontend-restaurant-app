@@ -1,0 +1,54 @@
+<h2>Manage Menu</h2>
+<div class="manage-btn-section">
+    <div class="filter-container">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" [(ngModel)]="selectedCategory">
+            <option value="">All Categories</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+    </div>
+    <button (click)="addNewItem()" class="admin-add-btn">Add New Item</button>
+</div>
+
+
+<!-- Reusable Modal for Adding and Editing -->
+<div *ngIf="newItem || editedItem" class="modal-backdrop" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+        <h3>{{ editedItem ? 'Edit Item' : 'Add New Item' }}</h3>
+        <input [(ngModel)]="modalItem.name" placeholder="Product Name" class="modal-input" />
+        <input type="number" [(ngModel)]="modalItem.price" placeholder="Price" class="modal-input" />
+        <select [(ngModel)]="modalItem.category" class="modal-dropdown">
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+        <textarea [(ngModel)]="modalItem.description" placeholder="Description" class="modal-textarea"></textarea>
+        <input [(ngModel)]="modalItem.imageUrl" placeholder="Image URL" class="modal-input" />
+        <select [(ngModel)]="modalItem.status" class="modal-dropdown">
+            <option *ngFor="let status of statusOptions" [value]="status.value">{{ status.label }}</option>
+        </select>
+        <p *ngIf="errorMessage" class="error auth-modal-err-msg">{{ errorMessage }}</p>
+        <div class="modal-actions" *ngIf="!isLoading">
+            <button (click)="saveItem()" [disabled]="!isFormValid()" class="save-btn">
+                {{ editedItem ? 'Update' : 'Save' }}
+            </button>
+            <button (click)="closeModal()" class="cancel-btn">Cancel</button>
+        </div>
+        <span *ngIf="isLoading"><img class="auth-loader" src="/assets/loader.png" /></span>
+    </div>
+</div>
+
+<div class="admin-menu">
+    <div *ngFor="let item of filteredItems" class="admin-card-container">
+        <img [src]="item.imageUrl" alt="Product Image" class="card-image" />
+        <div class="admin-card-content">
+            <h3 class="card-title highlight">{{ item.name }}</h3>
+            <p class="card-price"><span class="highlight">Price: </span>₱{{ item.price }}</p>
+            <p class="card-category"><span class="highlight">Category: </span> {{ item.category }}</p>
+            <p class="card-title">
+                <span class="highlight">Status: </span> {{ item.status === Status.ACTIVE ? 'Active' : 'Deleted' }}
+            </p>
+            <div class="card-actions">
+                <button (click)="editItem(item)" class="admin-edit-btn">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>

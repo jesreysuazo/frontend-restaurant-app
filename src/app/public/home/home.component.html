@@ -1,0 +1,97 @@
+<section id="heroBanner" class="hero">
+    <div class="section-container hero-content">
+        <div class="hero-text">
+            <h1 class="hero-header">Beat the Heat with Our Famous Halo-halo</h1>
+            <h1 class="hero-subheader">Experience the ultimate Filipino summer treat! Our signature Halo-halo Special is
+                a refreshing mix of crushed ice, sweet ingredients, and creamy milk that will transport you to tropical
+                paradise.</h1>
+            <div id="containerCTA">
+                <button class="hero-btn" (click)="navToMenu()">View Menu</button>
+            </div>
+
+        </div>
+        <img src="/assets/hero-halo.png" alt="Hero Image" id="heroImage">
+
+    </div>
+</section>
+<section class="home-section">
+    <div class="section-container menu-content">
+        <h1 class="section-header">Categories</h1>
+        <div id="category">
+            <div id="bestSeller" class="category-container" *ngIf="bestSeller.length >= 1"
+                (click)="setActiveCategory('bestSeller')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'bestSeller'}">
+                    <img src="/assets/best-seller.png" />
+                </span>
+                <div>Best Sellers</div>
+            </div>
+
+            <div id="valueMeals" class="category-container" *ngIf="valueMeals.length >= 1"
+                (click)="setActiveCategory('valueMeals')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'valueMeals'}">
+                    <img src="/assets/value-meal.png" />
+                </span>
+                <div>Value Meals</div>
+            </div>
+
+            <div id="bibingMamon" class="category-container" *ngIf="bibingMamon.length >= 1"
+                (click)="setActiveCategory('bibingMamon')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'bibingMamon'}">
+                    <img src="/assets/bibingmamon.png" />
+                </span>
+                <div>Bibing Mamon</div>
+            </div>
+
+            <div id="famFav" class="category-container" *ngIf="famFav.length >= 1"
+                (click)="setActiveCategory('famFav')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'famFav'}">
+                    <img src="/assets/famfav.png" />
+                </span>
+                <div>Family Favs</div>
+            </div>
+
+            <div id="partyPack" class="category-container" *ngIf="partyPack.length >= 1"
+                (click)="setActiveCategory('partyPack')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'partyPack'}">
+                    <img src="/assets/party-pack.png" />
+                </span>
+                <div>Party Pack</div>
+            </div>
+
+            <div id="riceBowl" class="category-container" *ngIf="riceBowl.length >= 1"
+                (click)="setActiveCategory('riceBowl')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'riceBowl'}">
+                    <img src="/assets/ricebowl.png" />
+                </span>
+                <div>Rice Bowls</div>
+            </div>
+
+            <div id="beverages" class="category-container" *ngIf="beverages.length >= 1"
+                (click)="setActiveCategory('beverages')">
+                <span class="category-image-container" [ngClass]="{'active': activeCategory === 'beverages'}">
+                    <img src="/assets/beverages.png" />
+                </span>
+                <div>Beverages</div>
+            </div>
+        </div>
+        <h1 class="section-header menu-header">{{activeSubheader}}</h1>
+        <p class="navToMenu" (click)="navToMenu()">See Full List</p>
+        <div id="menu">
+            <div class="menu">
+                <div class="menu-item" *ngFor="let item of showMenu">
+                    <p class="menu-item-price">₱{{ item.price }}</p>
+                    <img [src]="item.imageUrl" [alt]="item.name" />
+                    <div class="menu-item-content">
+                        <div class="menu-item-details">
+                            <h3 class="menu-card-header">{{ item.name }}</h3>
+                            <p class="menu-card-desc">{{ item.description }}</p>
+                        </div>
+                        <button class="menu-card-btn" (click)="addToCart(item.id)">Add to Cart</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
